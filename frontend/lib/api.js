@@ -1,9 +1,15 @@
 import axios from "axios";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5010/api";
+// Live backend on Render. Override with NEXT_PUBLIC_API_URL if needed.
+const PRODUCTION_API_URL = "https://preclinic.onrender.com/api";
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "development" ? "http://localhost:5010/api" : PRODUCTION_API_URL);
 
 const api = axios.create({
   baseURL: BASE_URL,
+  timeout: 60000, // Render free plan can take ~50s to wake up
 });
 
 api.interceptors.request.use((config) => {
