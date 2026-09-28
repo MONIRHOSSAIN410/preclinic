@@ -142,22 +142,22 @@ export function SimpleEntityManager({
             <TableHeader>
               <TableRow>
                 <TableHead>Name</TableHead>
-                <TableHead>{secondField.label}</TableHead>
+                <TableHead className="hidden md:table-cell">{secondField.label}</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="sticky right-0 bg-card text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {items.map((item) => (
                 <TableRow key={item._id}>
                   <TableCell className="font-medium text-foreground">{item.name}</TableCell>
-                  <TableCell className="max-w-xs truncate text-muted-foreground">
+                  <TableCell className="hidden md:table-cell max-w-xs truncate text-muted-foreground">
                     {item[secondField.key] || "-"}
                   </TableCell>
                   <TableCell>
                     <StatusBadge status={item.status} />
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="sticky right-0 bg-card text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">

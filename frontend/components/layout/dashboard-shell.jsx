@@ -30,16 +30,16 @@ export function DashboardShell({ children }) {
   }
 
   return (
-    <div className="flex min-h-screen bg-muted/30">
+    <div className="flex min-h-screen w-full overflow-x-clip bg-muted/30">
       <Sidebar
         collapsed={collapsed}
         onToggleCollapse={() => setCollapsed((c) => !c)}
         mobileOpen={mobileOpen}
         onCloseMobile={() => setMobileOpen(false)}
       />
-      <div className="flex min-h-screen flex-1 flex-col">
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
         <Header onOpenMobile={() => setMobileOpen(true)} />
-        <main className="flex-1 p-4 sm:p-6">
+        <main className="min-w-0 flex-1 p-3 sm:p-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={pathname}

@@ -39,7 +39,7 @@ const TableHead = React.forwardRef(({ className, ...props }, ref) => (
   <th
     ref={ref}
     className={cn(
-      "h-11 whitespace-nowrap px-4 text-left align-middle text-xs font-semibold uppercase tracking-wide text-muted-foreground",
+      "h-11 whitespace-nowrap px-3 text-left sm:px-4 align-middle text-xs font-semibold uppercase tracking-wide text-muted-foreground",
       className
     )}
     {...props}
@@ -48,7 +48,7 @@ const TableHead = React.forwardRef(({ className, ...props }, ref) => (
 TableHead.displayName = "TableHead";
 
 const TableCell = React.forwardRef(({ className, ...props }, ref) => (
-  <td ref={ref} className={cn("whitespace-nowrap px-4 py-3 align-middle", className)} {...props} />
+  <td ref={ref} className={cn("whitespace-nowrap px-3 py-3 align-middle sm:px-4", className)} {...props} />
 ));
 TableCell.displayName = "TableCell";
 

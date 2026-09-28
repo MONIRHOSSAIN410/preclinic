@@ -22,7 +22,7 @@ export function Header({ onOpenMobile }) {
   const { admin, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-border bg-background/80 px-4 backdrop-blur-md sm:px-6">
+    <header className="sticky top-0 z-20 flex h-16 items-center gap-2 border-b border-border bg-background/80 px-3 backdrop-blur-md sm:gap-3 sm:px-6">
       <button
         onClick={onOpenMobile}
         className="rounded-lg p-2 text-muted-foreground hover:bg-accent lg:hidden"
@@ -35,7 +35,7 @@ export function Header({ onOpenMobile }) {
         <Input placeholder="Search doctors, patients, invoices..." className="pl-9" />
       </div>
 
-      <div className="ml-auto flex items-center gap-2">
+      <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
         <ColorSwitcher />
         <ThemeToggle />
 
@@ -46,7 +46,7 @@ export function Header({ onOpenMobile }) {
               <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-72">
+          <DropdownMenuContent align="end" className="w-[min(18rem,calc(100vw-1.5rem))]">
             <DropdownMenuLabel>Notifications</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="flex-col items-start gap-0.5">

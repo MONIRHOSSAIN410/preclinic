@@ -70,26 +70,32 @@ export default function InvoicesPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Invoice #</TableHead>
-                <TableHead>Patient</TableHead>
-                <TableHead>Issued On</TableHead>
-                <TableHead>Due Date</TableHead>
+                <TableHead className="hidden sm:table-cell">Patient</TableHead>
+                <TableHead className="hidden xl:table-cell">Issued On</TableHead>
+                <TableHead className="hidden xl:table-cell">Due Date</TableHead>
                 <TableHead>Amount</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="hidden sm:table-cell">Status</TableHead>
+                <TableHead className="sticky right-0 bg-card text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {invoices.map((inv) => (
                 <TableRow key={inv._id}>
-                  <TableCell className="font-medium text-foreground">{inv.invoiceNumber}</TableCell>
-                  <TableCell>{inv.patient?.name}</TableCell>
-                  <TableCell>{formatDate(inv.issuedOn)}</TableCell>
-                  <TableCell>{formatDate(inv.dueDate)}</TableCell>
-                  <TableCell>{formatCurrency(invoiceTotal(inv))}</TableCell>
                   <TableCell>
+                    <p className="font-medium text-foreground">{inv.invoiceNumber}</p>
+                    <p className="max-w-[9rem] truncate text-xs text-muted-foreground sm:hidden">{inv.patient?.name}</p>
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">{inv.patient?.name}</TableCell>
+                  <TableCell className="hidden xl:table-cell">{formatDate(inv.issuedOn)}</TableCell>
+                  <TableCell className="hidden xl:table-cell">{formatDate(inv.dueDate)}</TableCell>
+                  <TableCell>
+                    <p>{formatCurrency(invoiceTotal(inv))}</p>
+                    <StatusBadge status={inv.status} className="mt-1 sm:hidden" />
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
                     <StatusBadge status={inv.status} />
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="sticky right-0 bg-card text-right">
                     <Button variant="ghost" size="icon" asChild>
                       <Link href={`/invoices/${inv._id}`}>
                         <Eye className="h-4 w-4" />

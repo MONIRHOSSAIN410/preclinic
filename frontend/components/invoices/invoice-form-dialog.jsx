@@ -133,16 +133,16 @@ export function InvoiceFormDialog({ open, onOpenChange, onSaved }) {
             </div>
             <div className="space-y-2">
               {form.items.map((item, idx) => (
-                <div key={idx} className="grid grid-cols-12 items-center gap-2">
+                <div key={idx} className="grid grid-cols-12 items-center gap-2 rounded-xl border border-border p-2 sm:rounded-none sm:border-0 sm:p-0">
                   <Input
-                    className="col-span-5"
+                    className="col-span-12 sm:col-span-5"
                     placeholder="Item name"
                     required
                     value={item.name}
                     onChange={(e) => updateItem(idx, "name", e.target.value)}
                   />
                   <Input
-                    className="col-span-3"
+                    className="col-span-5 sm:col-span-3"
                     type="number"
                     min={0}
                     placeholder="Unit cost"
@@ -151,7 +151,7 @@ export function InvoiceFormDialog({ open, onOpenChange, onSaved }) {
                     onChange={(e) => updateItem(idx, "unitCost", e.target.value)}
                   />
                   <Input
-                    className="col-span-2"
+                    className="col-span-4 sm:col-span-2"
                     type="number"
                     min={1}
                     placeholder="Qty"
@@ -163,7 +163,7 @@ export function InvoiceFormDialog({ open, onOpenChange, onSaved }) {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="col-span-2 text-destructive"
+                    className="col-span-3 justify-self-end text-destructive sm:col-span-2 sm:justify-self-auto"
                     onClick={() => removeItem(idx)}
                     disabled={form.items.length === 1}
                   >
