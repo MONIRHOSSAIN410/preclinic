@@ -131,38 +131,42 @@ export default function AppointmentsPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Date & Time</TableHead>
+                <TableHead className="hidden sm:table-cell">Date & Time</TableHead>
                 <TableHead>Patient</TableHead>
-                <TableHead>Doctor</TableHead>
-                <TableHead>Mode</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="hidden xl:table-cell">Doctor</TableHead>
+                <TableHead className="hidden 2xl:table-cell">Mode</TableHead>
+                <TableHead className="hidden sm:table-cell">Status</TableHead>
+                <TableHead className="sticky right-0 bg-card text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filtered.map((a) => (
                 <TableRow key={a._id}>
-                  <TableCell>{formatDateTime(a.date)}</TableCell>
+                  <TableCell className="hidden sm:table-cell">{formatDateTime(a.date)}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <Avatar className="h-8 w-8">
                         <AvatarImage src={a.patient?.avatar} />
                         <AvatarFallback>{getInitials(a.patient?.name || "P")}</AvatarFallback>
                       </Avatar>
-                      <span className="font-medium text-foreground">{a.patient?.name}</span>
+                      <div className="min-w-0">
+                        <p className="max-w-[11rem] truncate font-medium text-foreground sm:max-w-none">{a.patient?.name}</p>
+                        <p className="text-xs text-muted-foreground sm:hidden">{formatDateTime(a.date)}</p>
+                        <StatusBadge status={a.status} className="mt-1 sm:hidden" />
+                      </div>
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="hidden xl:table-cell">
                     <div>
                       <p className="font-medium text-foreground">{a.doctor?.name}</p>
                       <p className="text-xs text-muted-foreground">{a.doctor?.specialization}</p>
                     </div>
                   </TableCell>
-                  <TableCell>{a.mode}</TableCell>
-                  <TableCell>
+                  <TableCell className="hidden 2xl:table-cell">{a.mode}</TableCell>
+                  <TableCell className="hidden sm:table-cell">
                     <StatusBadge status={a.status} />
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="sticky right-0 bg-card text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
