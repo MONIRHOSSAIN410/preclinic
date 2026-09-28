@@ -88,7 +88,7 @@ export default function PatientDetailsPage() {
                 <AvatarFallback className="text-xl">{getInitials(patient.name)}</AvatarFallback>
               </Avatar>
               <div className="text-center sm:text-left">
-                <div className="flex items-center justify-center gap-2 sm:justify-start">
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
                   <h1 className="text-xl font-bold text-foreground">{patient.name}</h1>
                   <Badge variant="outline">#{patient.patientId}</Badge>
                 </div>
@@ -167,7 +167,7 @@ export default function PatientDetailsPage() {
                       <TableRow>
                         <TableHead>Date & Time</TableHead>
                         <TableHead>Doctor</TableHead>
-                        <TableHead>Mode</TableHead>
+                        <TableHead className="hidden sm:table-cell">Mode</TableHead>
                         <TableHead>Status</TableHead>
                       </TableRow>
                     </TableHeader>
@@ -181,7 +181,7 @@ export default function PatientDetailsPage() {
                               <p className="text-xs text-muted-foreground">{a.doctor?.specialization}</p>
                             </div>
                           </TableCell>
-                          <TableCell>{a.mode}</TableCell>
+                          <TableCell className="hidden sm:table-cell">{a.mode}</TableCell>
                           <TableCell>
                             <StatusBadge status={a.status} />
                           </TableCell>

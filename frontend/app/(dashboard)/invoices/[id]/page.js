@@ -55,7 +55,7 @@ export default function InvoiceDetailsPage() {
 
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
         <Card>
-          <CardContent className="p-6 sm:p-10">
+          <CardContent className="p-4 sm:p-10">
             <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-6">
               <div>
                 <div className="mb-4 flex items-center gap-2">
@@ -75,7 +75,7 @@ export default function InvoiceDetailsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 border-b border-border py-6 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-6 border-b border-border py-6 sm:grid-cols-3 [&>div]:min-w-0 [&_p]:break-words">
               <div>
                 <p className="mb-1 text-xs font-semibold uppercase text-muted-foreground">Issued On</p>
                 <p className="text-sm text-foreground">{formatDate(invoice.issuedOn)}</p>
@@ -107,22 +107,22 @@ export default function InvoiceDetailsPage() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border text-left text-xs uppercase text-muted-foreground">
-                      <th className="py-2 pr-4">#</th>
+                      <th className="hidden py-2 pr-4 sm:table-cell">#</th>
                       <th className="py-2 pr-4">Description</th>
-                      <th className="py-2 pr-4">Unit Cost</th>
-                      <th className="py-2 pr-4">Quantity</th>
+                      <th className="hidden py-2 pr-4 sm:table-cell">Unit Cost</th>
+                      <th className="py-2 pr-4">Qty</th>
                       <th className="py-2 text-right">Amount</th>
                     </tr>
                   </thead>
                   <tbody>
                     {invoice.items.map((item, idx) => (
                       <tr key={idx} className="border-b border-border last:border-0">
-                        <td className="py-3 pr-4 text-muted-foreground">{idx + 1}</td>
+                        <td className="hidden py-3 pr-4 text-muted-foreground sm:table-cell">{idx + 1}</td>
                         <td className="py-3 pr-4">
                           <p className="font-medium text-foreground">{item.name}</p>
                           <p className="text-xs text-muted-foreground">{item.description}</p>
                         </td>
-                        <td className="py-3 pr-4">{formatCurrency(item.unitCost)}</td>
+                        <td className="hidden py-3 pr-4 sm:table-cell">{formatCurrency(item.unitCost)}</td>
                         <td className="py-3 pr-4">{item.quantity}</td>
                         <td className="py-3 text-right font-medium">
                           {formatCurrency(item.unitCost * item.quantity)}
@@ -142,7 +142,7 @@ export default function InvoiceDetailsPage() {
                 <p>IFSC Code: {invoice.ifscCode}</p>
                 <p>Payment Reference: {invoice.invoiceNumber}</p>
               </div>
-              <div className="w-full max-w-xs space-y-2 text-sm">
+              <div className="w-full space-y-2 text-sm sm:max-w-xs">
                 <div className="flex justify-between text-muted-foreground">
                   <span>Amount</span> <span>{formatCurrency(subtotal)}</span>
                 </div>

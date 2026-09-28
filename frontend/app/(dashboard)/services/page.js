@@ -102,22 +102,26 @@ export default function ServicesPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Service Name</TableHead>
-                <TableHead>Department</TableHead>
+                <TableHead className="hidden md:table-cell">Department</TableHead>
                 <TableHead>Price</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="hidden sm:table-cell">Status</TableHead>
+                <TableHead className="sticky right-0 bg-card text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {services.map((s) => (
                 <TableRow key={s._id}>
-                  <TableCell className="font-medium text-foreground">{s.name}</TableCell>
-                  <TableCell>{s.department}</TableCell>
-                  <TableCell>{formatCurrency(s.price)}</TableCell>
                   <TableCell>
+                    <p className="font-medium text-foreground">{s.name}</p>
+                    <p className="text-xs text-muted-foreground md:hidden">{s.department}</p>
+                    <StatusBadge status={s.status} className="mt-1 sm:hidden" />
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">{s.department}</TableCell>
+                  <TableCell>{formatCurrency(s.price)}</TableCell>
+                  <TableCell className="hidden sm:table-cell">
                     <StatusBadge status={s.status} />
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="sticky right-0 bg-card text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
